@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # JanSetu — Government records and welfare MVP
 
 **Assignment:** FT4 · Unit 5 · Application based question and tutorial  
