@@ -110,6 +110,4 @@ The production dependency audit could not be refreshed in this environment becau
 
 Government offices often hold records in separate systems, making inconsistencies and unauthorized changes difficult to investigate. JanSetu models a shared, permissioned ledger for land registrations, departmental approvals, eligibility claims and PDS delivery receipts. Smart contracts can enforce workflow rules and provide a common audit trail, while they cannot establish that source documents are genuine or replace legal due process. Sensitive records stay off-chain, and residents need accessible ways to inspect and challenge government-held records.
 =======
-# JanSetu_Blockchain-Use-Case
-Blockchain MVP for Government Use Case
->>>>>>> a44325b5ddb311b9bf8e7f4f10035aa016c6c2dc
+
