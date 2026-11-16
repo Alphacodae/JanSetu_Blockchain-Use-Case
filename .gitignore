@@ -1,0 +1,15 @@
+node_modules/
+artifacts/
+cache/
+coverage/
+.env
+.runtime/
+.runtime-local/
+deployment.local.json
+data/mvp-state.json
+*.log
+
+# Local encrypted demo state and key material
+data/*.sqlite
+data/*.sqlite-*
+data/demo-hash.key

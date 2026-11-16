@@ -1,0 +1,32 @@
+{
+  "name": "jansetu-government-records-mvp",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Local government records and PDS blockchain demo MVP",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "chain": "node scripts/hardhat.js node",
+    "compile": "node scripts/hardhat.js compile",
+    "deploy:local": "node scripts/hardhat.js run scripts/deploy.js --network localhost",
+    "start": "node server.js",
+    "test": "node scripts/hardhat.js test && node --test test/api.test.js",
+    "test:contracts": "node scripts/hardhat.js test",
+    "test:api": "node --test test/api.test.js",
+    "lint": "node --check server.js && node --check public/app.js && node --check scripts/deploy.js && node --check lib/database.js && node --check lib/auth.js && node --check lib/http-security.js && node --check lib/privacy.js && node --check lib/validation.js && node --check scripts/smoke-local.js && node --check scripts/demo-accounts.js",
+    "audit:prod": "npm audit --omit=dev",
+    "smoke:local": "node scripts/smoke-local.js",
+    "demo:accounts": "node scripts/demo-accounts.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ethers": "^6.13.5",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "hardhat": "^2.22.17",
+    "solc": "0.8.24"
+  }
+}

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f4">
+  <title>JanSetu — Land Records</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">J</div>
+        <div>
+          <div class="brand-name">JanSetu</div>
+          <div class="brand-sub">PUBLIC RECORDS NETWORK</div>
+        </div>
+      </div>
+      <div class="nav-label">Workspace</div>
+      <nav class="nav"><button class="active" data-view="dashboard"><span class="ico">▦</span>Overview</button><button
+          data-view="land"><span class="ico">⌂</span>Land records</button><button data-view="transfers"><span
+            class="ico">⇄</span>Transfer requests</button><button data-view="history"><span class="ico">◷</span>Audit
+          trail</button></nav>
+      <div class="nav-label nav-services">Services</div>
+      <nav class="nav"><button data-view="identity"><span class="ico">◉</span>Digital identity</button><button
+          data-view="welfare"><span class="ico">♡</span>Welfare register</button></nav>
+      <div class="sidebar-bottom">
+        <div class="network">
+          <div class="network-top"><span class="dot"></span>Network operational</div><small>Permissioned government
+            network</small>
+        </div>
+        <div class="profile">
+          <div class="avatar">RK</div>
+          <div><b>R. Kumar</b><small>District Registrar · Demo</small></div>
+        </div>
+      </div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-left"><button class="mobile-menu" id="menu">☰</button>
+          <div class="crumb">Government services&nbsp; / &nbsp;<b id="crumb">Land records</b></div>
+        </div>
+        <div class="top-actions"><span class="chain-status" id="chainStatus"><span class="dot chain-status-dot"></span><span
+            class="chain-status-label">Connecting local chain…</span></span><span class="date" id="today"></span><button
+            class="theme-toggle has-tooltip" id="themeToggle" type="button" role="switch"
+            data-tooltip="Switch to dark mode" aria-label="Switch to dark mode" aria-checked="false"><span
+            class="theme-switch-track"><span class="theme-switch-thumb"><svg
+                class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M20.5 15.2A8.5 8.5 0 0 1 8.8 3.5 8.5 8.5 0 1 0 20.5 15.2Z"></path>
+              </svg></span></span><span class="theme-label sr-only">Dark mode</span></button><button class="btn"
+            id="walletButton"
+            type="button">Connect wallet</button><button class="btn" id="logoutButton" type="button" hidden>Sign
+            out</button></div>
+      </header>
+      <section class="auth-gate" id="authGate">
+        <div class="auth-card">
+          <div class="eyebrow">Department access</div>
+          <h1>Sign in with your department wallet</h1>
+          <p>Choose one of the five local Hardhat accounts in MetaMask. Access is granted only when the connected wallet
+            has a matching on-chain department role.</p>
+          <div class="auth-status" id="authStatus" aria-live="polite">Connect an authorized local wallet to continue.
+          </div><button class="btn primary" id="connectWallet" type="button">Connect department wallet</button>
+          <div class="auth-help">Local classroom demo only · never use these accounts on a public network.</div>
+        </div>
+      </section>
+      <div class="content" hidden>
+        <div class="demo-banner" role="note"><b>Local classroom demo only.</b> Use synthetic records and local Hardhat
+          accounts; this is not an official government service.</div>
+        <section class="heading">
+          <div>
+            <div class="eyebrow">Government · land administration</div>
+            <h1 id="pageTitle">Land records overview</h1>
+            <div class="subtitle" id="pageSubtitle">A shared, verifiable view of registered land and current transfer
+              activity.</div>
+          </div><button class="btn primary" id="newRecord"><span class="plus-icon">＋</span> Register land</button>
+        </section>
+        <section class="stats">
+          <article class="stat">
+            <div class="stat-top"><span class="stat-label">Demo parcels</span><span class="stat-icon">⌂</span></div>
+            <div class="stat-value" id="totalCount">—</div>
+            <div class="stat-foot">Stored in encrypted local datastore</div>
+          </article>
+          <article class="stat">
+            <div class="stat-top"><span class="stat-label">Verified parcels</span><span class="stat-icon">✓</span></div>
+            <div class="stat-value" id="verifiedCount">—</div>
+            <div class="stat-foot">Live contract status</div>
+          </article>
+          <article class="stat">
+            <div class="stat-top"><span class="stat-label">Pending workflows</span><span
+                class="stat-icon pending-icon">⇄</span></div>
+            <div class="stat-value" id="pendingCount">—</div>
+            <div class="stat-foot">Two office approvals required</div>
+          </article>
+          <article class="stat">
+            <div class="stat-top"><span class="stat-label">Block height</span><span class="stat-icon">↗</span></div>
+            <div class="stat-value" id="blockCount">—</div>
+            <div class="stat-foot">Local <strong>Hardhat chain</strong></div>
+          </article>
+        </section>
+        <section class="layout">
+          <article class="card table-card">
+            <div class="card-head">
+              <div>
+                <div class="card-title">Recent land records</div>
+                <div class="card-sub">Latest registrations and verified ownership updates</div>
+              </div><button class="text-link" id="viewAll">View all records&nbsp; →</button>
+            </div>
+            <div class="filters">
+              <div class="search"><span class="mag">⌕</span><input id="searchInput"
+                  placeholder="Search parcel ID, owner or village…" aria-label="Search records"></div><select
+                class="select" id="statusFilter" aria-label="Filter by status">
+                <option value="all">All statuses</option>
+                <option value="Verified">Verified</option>
+                <option value="Pending">Pending</option>
+                <option value="transfer">Transfer pending</option>
+              </select>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Parcel / location</th>
+                    <th>Registered owner</th>
+                    <th>Area</th>
+                    <th>Last updated</th>
+                    <th>Status</th>
+                    <th>Workflow</th>
+                  </tr>
+                </thead>
+                <tbody id="recordRows"></tbody>
+              </table>
+            </div>
+          </article>
+          <div class="rightcol">
+            <article class="card chain-card">
+              <div class="chain-top">
+                <div class="chain-title">Network health</div><span class="chain-tag">● LIVE</span>
+              </div>
+              <div class="chain-num">Block #8,429,106</div>
+              <div class="chain-desc">Latest land record changes confirmed by network validators.</div>
+              <div class="chain-foot"><span>Validators <b>7 / 7</b></span><span>Finality <b>~4
+                    sec</b></span><span>Uptime <b>99.98%</b></span></div>
+            </article>
+            <article class="card activity">
+              <div class="card-head">
+                <div>
+                  <div class="card-title">Recent activity</div>
+                  <div class="card-sub">Latest actions on the network</div>
+                </div><button class="text-link" data-nav="history">See audit trail</button>
+              </div>
+              <div class="activity-list" id="activityList">
+                <div class="activity-item">
+                  <div class="activity-icon">✓</div>
+                  <div class="activity-copy"><b>Ownership verified</b> for LR-2024-00831<small>Village office · 8
+                      minutes ago</small></div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-icon">⇄</div>
+                  <div class="activity-copy"><b>Transfer submitted</b> for LR-2024-00614<small>Sub-registrar · 24
+                      minutes ago</small></div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-icon">▤</div>
+                  <div class="activity-copy"><b>Record updated</b> for LR-2024-00902<small>District survey office · 1
+                      hour ago</small></div>
+                </div>
+              </div>
+            </article>
+            <article class="card steps-card">
+              <div class="card-head">
+                <div>
+                  <div class="card-title">How verification works</div>
+                  <div class="card-sub">A record is shared after authorized review</div>
+                </div>
+              </div>
+              <div class="steps">
+                <div class="step">
+                  <div class="step-no">1</div>
+                  <div class="step-copy"><b>Submit a record</b><span>Registrar enters parcel details and supporting
+                      document references.</span></div>
+                </div>
+                <div class="step">
+                  <div class="step-no">2</div>
+                  <div class="step-copy"><b>Verify with departments</b><span>Land, survey and registration offices
+                      review the request.</span></div>
+                </div>
+                <div class="step">
+                  <div class="step-no">3</div>
+                  <div class="step-copy"><b>Commit the change</b><span>Approved updates create a traceable entry on the
+                      shared ledger.</span></div>
+                </div>
+              </div>
+              <div class="notice"><b>Privacy by design.</b> Personal documents stay in government systems. The ledger
+                stores record references, approvals and integrity proofs.</div>
+            </article>
+          </div>
+        </section>
+        <div class="footer">JanSetu is an educational prototype with sample data. &nbsp; See README.md for local setup
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="modal">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <header class="modal-header">
+        <div>
+          <h2 id="modalTitle">Register a land parcel</h2>
+          <p>Submit a record for interdepartmental verification.</p>
+        </div><button class="close" id="closeModal" aria-label="Close">×</button>
+      </header>
+      <form class="form" id="recordForm">
+        <div class="field"><label for="parcel">Parcel ID</label><input class="form-control" id="parcel" required
+            placeholder="e.g. LR-2026-00124"></div>
+        <div class="field"><label for="owner">Registered owner</label><input class="form-control" id="owner" required
+            placeholder="Full name"></div>
+        <div class="field"><label for="village">Village / district</label><input class="form-control" id="village"
+            required placeholder="Village, District"></div>
+        <div class="field"><label for="area">Area (acres)</label><input class="form-control" id="area" type="number"
+            min="0.01" step="0.01" required placeholder="0.00"></div>
+        <div class="field full"><label for="doc">Document reference (off-chain)</label><input class="form-control"
+            id="doc" required placeholder="e.g. REG-2026-8821 (no personal document uploaded)"></div>
+        <div class="form-actions"><button class="btn" type="button" id="cancelModal">Cancel</button><button
+            class="btn primary" type="submit">Submit for verification&nbsp; →</button></div>
+      </form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script defer src="/app.js"></script>
+</body>
+
+</html>
